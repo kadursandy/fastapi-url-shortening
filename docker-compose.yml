@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: 'gunicorn --bind 0.0.0.0:5000 main:app -w 2 -k uvicorn.workers.UvicornWorker --log-level warning'
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/app
