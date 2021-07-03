@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: fastapi-url-shortener-deploy
+  name: fastapi-url-shortener-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fastapi-url-shortener
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: fastapi-url-shortener
+    spec:
+      containers:
+      - image: kadursandy/fastapi-url-shortener:1.0.1
+        name: fastapi-url-shortener
+        ports:
+        - containerPort: 8081
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "100m"
+status: {}
